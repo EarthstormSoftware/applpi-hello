@@ -126,4 +126,5 @@ async def set_config(request):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 80))
     print(f"{APP['name']} {APP['version']} on port {port}, keeping its settings in {STATE}")
-    app.run(port=port)
+    # Every address, IPv4 and IPv6 (asyncio makes a socket for each): <name>.local can resolve to either
+    app.run(host=None, port=port)
