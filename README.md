@@ -4,6 +4,10 @@ The example app for [ApplPi OS](https://github.com/EarthstormSoftware/applpi-os)
 Pico projects' pages, showing the Pi (up time, temperature, memory, load) and the OS it runs, with one setting, a
 greeting, that stays through deploys and OS updates. Copy it to start a new app.
 
+## What it needs
+
+ApplPi OS from the release after v0.6.0, the first that knows `applpi` in `app.json` (an older one refuses it).
+
 ## Deploying it
 
 On Windows, with the Pi set up by `applpi flash` (so SSH works with your key):
@@ -21,7 +25,7 @@ Everything in `app\` goes to the Pi (`/data/app`):
 
 | File | Is |
 |---|---|
-| `app.json` | The manifest: `name` (lowercase letters, digits and hyphens), `version`, and `root: true` if it must run as root (most apps don't). |
+| `app.json` | The manifest: `applpi`, the ApplPi version the app needs (`"1.0"`, see ApplPi OS's [app contract](https://github.com/EarthstormSoftware/applpi-os/blob/main/docs/app-contract.md)), `name` (lowercase letters, digits and hyphens), `version`, and `root: true` if it must run as root (most apps don't). |
 | `main.py` | Where it starts, run with the OS's Python. |
 | `lib\` | Its pure-Python libraries (here Microdot), as on a Pico. Compiled ones come with the OS. |
 | `www\` | Its web page. |
