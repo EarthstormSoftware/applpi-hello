@@ -3,8 +3,8 @@
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hello</title>
-<!-- The ApplPi apple -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 10c-3-3-10-2-10 6 0 6 4 12 7 12 1.5 0 2-1 3-1s1.5 1 3 1c3 0 7-6 7-12 0-8-7-9-10-6z' fill='%23c51a4a'/%3E%3Cpath d='M16 10c0-3 1-5 4-6' fill='none' stroke='%2375a928' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<!-- The Juggle OS icon: three balls on a juggler's figure of eight -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='8 -17 184 184'%3E%3Cpath d='M100 75C130 30 175 30 175 75S130 120 100 75 25 30 25 75 70 120 100 75Z' fill='none' stroke='%236b7080' stroke-width='16'/%3E%3Ccircle cx='51' cy='41' r='22' fill='%233ddc84'/%3E%3Ccircle cx='100' cy='75' r='20' fill='%23ffb020'/%3E%3Ccircle cx='149' cy='109' r='22' fill='%234da3ff'/%3E%3C/svg%3E">
 <style>
 /* As the Pico projects' pages. Colours: text is at least 4.5:1 on its background, borders 3:1. */
 :root{color-scheme:light dark;
@@ -87,7 +87,7 @@ footer{font-size:11px;color:var(--muted);text-align:center;padding:10px 0 14px}
   <dl class="facts">
     <dt>App</dt><dd id="s_app">&mdash;</dd>
     <dt>App up for</dt><dd id="s_app_up">&mdash;</dd>
-    <dt>ApplPi OS</dt><dd id="s_os">&mdash;</dd>
+    <dt>Juggle OS</dt><dd id="s_os">&mdash;</dd>
     <dt>OS slot</dt><dd id="s_slot">&mdash;</dd>
   </dl>
   </div>
@@ -106,7 +106,7 @@ footer{font-size:11px;color:var(--muted);text-align:center;padding:10px 0 14px}
     <p class="msg" id="save_msg" role="status"></p>
   </form>
 </div>
-<footer>ApplPi OS example app</footer>
+<footer>Juggle OS example app</footer>
 </div>
 <script>
 const $ = id => document.getElementById(id);
@@ -130,7 +130,7 @@ async function refresh() {
     $('s_load').textContent = i.device.load.toFixed(2);
     $('s_app').textContent = `${i.app.name} ${i.app.version}`;
     $('s_app_up').textContent = duration(i.app.up_s);
-    $('s_os').textContent = i.os.version ? `${i.os.version}, build ${i.os.build} UTC` : 'not ApplPi OS';
+    $('s_os').textContent = i.os.version ? `${i.os.version}, build ${i.os.build} UTC` : 'not Juggle OS';
     $('s_slot').textContent = i.os.slot || 'unknown';
   } catch (e) {
     $('state').textContent = 'Not answering'; $('state').className = 'badge';

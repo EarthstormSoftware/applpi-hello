@@ -1,4 +1,4 @@
-"""Hello: the example ApplPi OS app. A web page in the style of the Pico projects' pages, showing the Pi and the OS
+"""Hello: the example Juggle OS app. A web page in the style of the Pico projects' pages, showing the Pi and the OS
 it runs, with one setting (a greeting) kept in the app's state folder, so it outlasts deploys and OS updates.
 
   GET  /             the page
@@ -18,10 +18,10 @@ from microdot import Microdot, Response
 
 HERE = Path(__file__).parent
 APP = json.loads((HERE / "app.json").read_text(encoding="utf-8"))
-# ApplPi OS says where the app keeps what it writes; elsewhere (on a PC), a folder beside it
-STATE = Path(os.environ.get("APPLPI_STATE", HERE / "state"))
+# Juggle OS says where the app keeps what it writes; elsewhere (on a PC), a folder beside it
+STATE = Path(os.environ.get("JUGGLE_STATE", HERE / "state"))
 SETTINGS = STATE / "settings.json"
-DEFAULTS = {"greeting": "Hello from ApplPi OS"}
+DEFAULTS = {"greeting": "Hello from Juggle OS"}
 STARTED = time.monotonic()
 
 app = Microdot()
@@ -49,9 +49,9 @@ def read(path, default=None):
 
 
 def os_info():
-    release = dict(line.split("=", 1) for line in (read("/etc/applpi-release") or "").splitlines() if "=" in line)
+    release = dict(line.split("=", 1) for line in (read("/etc/juggle-release") or "").splitlines() if "=" in line)
     try:
-        slot = subprocess.run(["/usr/lib/applpi/slot"], capture_output=True, text=True, timeout=5).stdout.strip()
+        slot = subprocess.run(["/usr/lib/juggle/slot"], capture_output=True, text=True, timeout=5).stdout.strip()
     except OSError:
         slot = None
     return {"version": release.get("VERSION"), "build": release.get("BUILD_STAMP"), "slot": slot or None}
