@@ -6,7 +6,7 @@ greeting, that stays through deploys and OS updates. Copy it to start a new app.
 
 ## What it needs
 
-Juggle OS from the release after v0.6.0, the first that knows `juggle` in `app.json` (an older one refuses it).
+Juggle OS v0.7.0 or later, the first that knows `juggle` in `app.json` (an older one refuses it).
 
 ## Deploying it
 
