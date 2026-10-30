@@ -31,7 +31,8 @@ one doesn't keep running.
    while the name stays the same) and a `version`. Add `"root": true` only if a library needs `/dev/mem`, and
    `"pwm": true` for WS2812 LEDs on GPIO 18.
 3. In `app\product.py`, change `NAME`, and replace the greeting with the app's own settings and hooks. For a light,
-   see [Juggle Unicorn](https://github.com/EarthstormSoftware/juggle-unicorn).
+   App Base's `device.py` lists the hooks, and
+   [PlasmaStick Controller](https://github.com/EarthstormSoftware/plasmastick-controller) is one on a Pico W.
 4. In `app\www\index.html`, replace the Hello tab with the app's own; the Device and MQTT tabs can stay as they are.
 5. Change the tests in `tests\` to match, and the README.
 
