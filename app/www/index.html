@@ -3,55 +3,20 @@
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hello</title>
-<!-- The Juggle OS icon: three balls on a juggler's figure of eight -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='8 -17 184 184'%3E%3Cpath d='M100 75C130 30 175 30 175 75S130 120 100 75 25 30 25 75 70 120 100 75Z' fill='none' stroke='%236b7080' stroke-width='16'/%3E%3Ccircle cx='51' cy='41' r='22' fill='%233ddc84'/%3E%3Ccircle cx='100' cy='75' r='20' fill='%23ffb020'/%3E%3Ccircle cx='149' cy='109' r='22' fill='%234da3ff'/%3E%3C/svg%3E">
+<!-- A waving hand's palm: a rounded square with a wave mark -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='6' fill='%233DDC84'/%3E%3Cpath d='M9 18c2-6 5-6 7 0s5 6 7 0' fill='none' stroke='%2322242f' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/base.css">
 <style>
-/* As the Pico projects' pages. Colours: text is at least 4.5:1 on its background, borders 3:1. */
-:root{color-scheme:light dark;
-  --page:#667eea;--card:#fff;--text:#333;--text2:#4a4f5c;--muted:#6b7080;
-  --line:#e6e7ec;--border:#8c92a0;--field:#fff;--accent:#4a56c9;--on-accent:#fff;
-  --on:#2e7d32;--chip:#f1f3f9;--ok-bg:#e7f5e8;--ok:#1e6b23;--bad-bg:#fdecea;--bad:#a12622}
-@media (prefers-color-scheme:dark){:root{
-  --page:#14151d;--card:#22242f;--text:#e8e9ef;--text2:#c4c7d2;--muted:#9aa0b0;
-  --line:#33364a;--border:#6b7080;--field:#2b2e3b;--accent:#9aa8ff;--on-accent:#14151d;
-  --chip:#2f3240;--ok-bg:#1f3a24;--ok:#8fd694;--bad-bg:#452523;--bad:#ff9e98}}
-*{margin:0;padding:0;box-sizing:border-box}
-[hidden]{display:none!important}
-body{font-family:system-ui,sans-serif;background:var(--page);color:var(--text);min-height:100vh;padding:16px;display:flex;justify-content:center;align-items:flex-start}
-.card{background:var(--card);border-radius:12px;width:100%;max-width:760px;overflow:hidden}
-header{padding:20px 20px 0;text-align:center}
-h1{font-size:21px;color:var(--text);margin-bottom:6px}
-.badge{display:inline-block;padding:3px 12px;border-radius:10px;font-size:12px;font-weight:700;margin-bottom:12px;background:var(--chip);color:var(--text2)}
-.badge.on{background:var(--on);color:#fff}
-.alert{margin:0 20px 12px;padding:10px 12px;border-radius:8px;background:var(--bad-bg);color:var(--bad);font-size:13px;text-align:left}
-/* CSS-only tabs: radio inputs drive panel visibility, hidden visually but focusable */
-input[name=t]{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
-nav{display:flex;border-bottom:2px solid var(--line)}
-nav label{flex:1;padding:11px 4px;text-align:center;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;transition:.15s}
-nav label:hover{color:var(--text)}
-.pane{display:none;padding:20px}
-#tst:checked~nav label[for=tst],#ts:checked~nav label[for=ts]{color:var(--accent);border-bottom-color:var(--accent)}
-#tst:checked~#pst,#ts:checked~#ps{display:block}
-#tst:focus-visible~nav label[for=tst],#ts:focus-visible~nav label[for=ts]{outline:2px solid var(--accent);outline-offset:-4px;border-radius:6px}
-.greeting{font-size:19px;font-weight:600;text-align:center;margin-bottom:20px;color:var(--accent)}
+.greeting{font-size:22px;font-weight:700;color:var(--text);text-align:center;margin:8px 0 16px;overflow-wrap:anywhere}
 .facts{display:grid;grid-template-columns:minmax(96px,max-content) 1fr;gap:6px 16px;font-size:13px;margin-bottom:8px}
 .facts dt{color:var(--muted)}
 .facts dd{color:var(--text);overflow-wrap:anywhere}
-.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px 32px}
-.sec{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px}
-.sec:first-child{margin-top:0}
-.field{display:flex;flex-direction:column;gap:3px;margin-bottom:8px}
-.field label{font-size:12px;color:var(--text2);font-weight:500}
-input[type=text]{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;background:var(--field);color:var(--text)}
-input[type=text]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
-.note{font-size:12px;color:var(--muted);margin-bottom:8px}
-.msg{font-size:12px;color:var(--bad);min-height:16px;margin-top:4px}
-.msg.good{color:var(--ok)}
-.btn-full{display:block;width:100%;margin-top:10px;padding:11px;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;background:var(--accent);color:var(--on-accent)}
-.btn-full:disabled{opacity:.5;cursor:default}
-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.noscript{margin:0 20px 12px;padding:10px 12px;border-radius:8px;background:var(--bad-bg);color:var(--bad);font-size:13px}
-footer{font-size:11px;color:var(--muted);text-align:center;padding:10px 0 14px}
+/* The Pi and its OS side by side; stacked on a phone */
+.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 32px}
+.buttons{margin-bottom:8px}
+/* With MQTT off there's nothing else to set */
+form:has(#mqtt_enabled:not(:checked)) .mqtt-more{display:none}
+form:has(#mqtt_enabled:checked) .mqtt-off{display:none}
 </style>
 </head>
 <body>
@@ -59,110 +24,248 @@ footer{font-size:11px;color:var(--muted);text-align:center;padding:10px 0 14px}
 <header>
   <h1 id="name">Hello</h1>
   <span class="badge" id="state">Loading&hellip;</span>
+  <div class="health" id="health"></div>
 </header>
 <div class="alert" id="alert" role="alert" hidden></div>
 <noscript><p class="noscript">This page needs JavaScript. Turn it on for this site, then reload.</p></noscript>
 
-<input type="radio" name="t" id="tst" aria-label="Status tab" checked>
-<input type="radio" name="t" id="ts" aria-label="Settings tab">
+<input type="radio" name="t" id="th" data-pane="ph" aria-label="Hello tab" checked>
+<input type="radio" name="t" id="td" data-pane="pd" aria-label="Device tab">
+<input type="radio" name="t" id="tm" data-pane="pm" aria-label="MQTT tab">
 <nav>
-  <label for="tst">Status</label>
-  <label for="ts">Settings</label>
+  <label for="th">Hello</label>
+  <label for="td">Device</label>
+  <label for="tm">MQTT</label>
 </nav>
 
-<div class="pane" id="pst">
-  <p class="greeting" id="greeting">&nbsp;</p>
+<!-- HELLO PANEL: the app's own -->
+<div class="pane" id="ph">
+  <p class="greeting" id="greeting">&hellip;</p>
+  <form class="settings">
+    <div class="frow">
+      <div class="field"><label for="greeting_text">Greeting</label>
+        <input type="text" required name="hello.greeting" id="greeting_text" maxlength="64" aria-describedby="greeting_help">
+      </div>
+    </div>
+    <p class="note" id="greeting_help">Kept through deploys and OS updates. MQTT and Home Assistant can change it too.</p>
+    <button type="submit" class="btn-full save" disabled>Save</button>
+    <p class="msg" role="status" aria-live="polite"></p>
+  </form>
+
   <div class="status">
   <div>
-  <div class="sec">Pi</div>
+  <div class="sec">The Pi</div>
   <dl class="facts">
-    <dt>Up for</dt><dd id="s_up">&mdash;</dd>
-    <dt>Temperature</dt><dd id="s_temp">&mdash;</dd>
+    <dt>Up for</dt><dd id="s_uptime">&mdash;</dd>
+    <dt>Temperature</dt><dd id="s_temperature">&mdash;</dd>
     <dt>Free memory</dt><dd id="s_mem">&mdash;</dd>
     <dt>Load</dt><dd id="s_load">&mdash;</dd>
+    <dt>Time</dt><dd id="s_time">&mdash;</dd>
   </dl>
   </div>
   <div>
   <div class="sec">Software</div>
   <dl class="facts">
-    <dt>App</dt><dd id="s_app">&mdash;</dd>
-    <dt>App up for</dt><dd id="s_app_up">&mdash;</dd>
+    <dt>Hello</dt><dd id="s_version">&mdash;</dd>
+    <dt>Running for</dt><dd id="s_app_uptime">&mdash;</dd>
     <dt>Juggle OS</dt><dd id="s_os">&mdash;</dd>
-    <dt>OS slot</dt><dd id="s_slot">&mdash;</dd>
+    <dt>MQTT</dt><dd id="s_mqtt">&mdash;</dd>
   </dl>
   </div>
   </div>
 </div>
 
-<div class="pane" id="ps">
-  <form id="settings">
-    <div class="sec">Greeting</div>
-    <div class="field"><label for="greet">Greeting</label>
-      <input type="text" id="greet" maxlength="64" required aria-describedby="greet_help">
+<!-- DEVICE PANEL: App Base's, as on every Juggle app -->
+<div class="pane" id="pd">
+  <form class="settings">
+    <div class="cols">
+    <div class="group">
+      <div class="sec">Identity</div>
+      <div class="frow">
+        <div class="field"><label for="device_name">Device Name</label>
+          <input type="text" id="device_name" aria-describedby="name_help" disabled>
+        </div>
+      </div>
+      <p class="note" id="name_help">The Pi's name, which SSH knows it by: it's set when the card is flashed.</p>
     </div>
-    <p class="note" id="greet_help">Shown on the Status tab. It's kept on the Pi's data partition, so it stays through
-      deploys of this app and OS updates.</p>
-    <button class="btn-full" id="save">Save</button>
-    <p class="msg" id="save_msg" role="status"></p>
+    <div class="group">
+      <div class="sec">Web Access</div>
+      <div class="frow">
+        <div class="field"><label for="web_password">Password</label>
+          <input type="password" name="web.password" id="web_password" maxlength="64" placeholder="leave blank to keep" autocomplete="new-password" aria-describedby="web_password_help">
+        </div>
+      </div>
+      <p class="note" data-password-set="web.password" hidden>A password is set.
+        <button type="button" class="reset" data-clear-password="web.password">Remove the password</button></p>
+      <p class="note" id="web_password_help">With a password set, the browser asks for it (any username). It's sent
+        unencrypted, so it keeps out other people on your network rather than a determined attacker.</p>
+    </div>
+    <div class="group">
+      <div class="sec">Diagnostics</div>
+      <div class="frow">
+        <div class="field"><label for="log_level">Log Level (the Pi's journal)</label>
+          <select name="device.log_level" id="log_level" data-number>
+            <option value="0">Warnings and errors</option>
+            <option value="1">Info</option>
+            <option value="2">Debug</option>
+          </select>
+        </div>
+      </div>
+      <p class="note">Over SSH: <code>journalctl -u juggle-app</code>.</p>
+    </div>
+    </div>
+    <button type="submit" class="btn-full save" disabled>Save</button>
+    <p class="msg" role="status" aria-live="polite"></p>
+  </form>
+
+  <div class="sec">Updates</div>
+  <p class="note"><code>deploy.ps1 &lt;name&gt; -WiFi</code> sends a new version over the network: the Pi tries it, and
+    goes back to this one if it doesn't keep running.</p>
+  <p class="note" id="update_note"></p>
+
+  <div data-os-setup hidden>
+    <div class="sec">Wi-Fi</div>
+    <div data-wifi-change hidden>
+      <p class="note">The Pi is set to <b id="wifi_current">&hellip;</b>. A new network is used after a restart, on
+        trial: if it can't connect within 5 minutes, the Pi goes back to this one.</p>
+      <div class="frow">
+        <div class="field"><label for="wifi_network">Network</label>
+          <select id="wifi_network"><option value="">Scan to list them</option></select>
+        </div>
+        <div class="field"><label for="wifi_network_other">Or type its name</label>
+          <input type="text" id="wifi_network_other" maxlength="32" placeholder="a hidden network" autocomplete="off" spellcheck="false" autocapitalize="off">
+        </div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="wifi_password">Password</label>
+          <input type="password" id="wifi_password" maxlength="63" placeholder="8-63 characters" autocomplete="new-password">
+        </div>
+      </div>
+      <div class="buttons">
+        <button type="button" class="btn-full quiet" id="wifi_scan">Scan</button>
+        <button type="button" class="btn-full" id="wifi_change">Change Wi-Fi</button>
+      </div>
+      <p class="msg" id="wifi_change_msg" role="status" aria-live="polite"></p>
+    </div>
+    <div class="sec">Name and Setup Mode</div>
+    <p class="note">The Pi's name, and its Wi-Fi when it can't reach this page, are changed in its setup mode: it
+      restarts with the Juggle-SETUP Wi-Fi network and a setup page, for as long as set below, then carries on with its
+      settings unless new ones are saved there.</p>
+    <div class="buttons">
+      <button type="button" class="btn-full quiet" data-setup-mode data-msg="wifi_msg" data-confirm="Restart the Pi into setup mode? This page goes away until it's back.">Rename (setup mode)…</button>
+    </div>
+    <div class="sec">Wi-Fi Fallback</div>
+    <label class="check"><input type="checkbox" id="wifi_fallback_enabled"> If Wi-Fi doesn't connect, go into setup mode by itself</label>
+    <div class="frow">
+      <div class="field"><label for="wifi_fallback_after">After (minutes without a network, up to 1440: a day)</label>
+        <input type="number" id="wifi_fallback_after" min="1" max="1440" step="1">
+      </div>
+      <div class="field"><label for="wifi_fallback_for">For (minutes, then try Wi-Fi again)</label>
+        <input type="number" id="wifi_fallback_for" min="5" max="120" step="1">
+      </div>
+    </div>
+    <button type="button" class="reset" id="wifi_save">Save</button>
+    <p class="msg" id="wifi_msg" role="status" aria-live="polite"></p>
+  </div>
+
+  <div class="sec">Restart and Reset</div>
+  <p class="note">Reset puts every setting on these pages back to its default (the web password too). A factory reset
+    also makes the Pi forget its name, Wi-Fi and SSH keys, and start in setup mode as a new Pi.</p>
+  <div class="buttons">
+    <button type="button" class="btn-full quiet" data-restart data-msg="reset_msg">Restart</button>
+    <button type="button" class="btn-full quiet" data-reboot data-os-requests hidden data-msg="reset_msg" data-confirm="Restart the Pi? It's back in about a minute.">Restart the Pi</button>
+    <button type="button" class="btn-full danger" data-reset data-msg="reset_msg" data-confirm="Reset all settings to their defaults? The app restarts.">Reset settings</button>
+    <button type="button" class="btn-full danger" data-factory-reset data-os-setup hidden data-msg="reset_msg" data-confirm="Factory reset? The Pi forgets its name, Wi-Fi and SSH keys and starts in setup mode, as a new Pi. Use Reset settings as well to reset this app.">Factory reset</button>
+  </div>
+  <p class="msg" id="reset_msg" role="status" aria-live="polite"></p>
+</div>
+
+<!-- MQTT PANEL: App Base's -->
+<div class="pane" id="pm">
+  <form class="settings">
+    <label class="check"><input type="checkbox" name="mqtt.enabled" id="mqtt_enabled"> Connect to an MQTT broker</label>
+    <p class="note mqtt-off">MQTT lets home automation software such as Home Assistant or Node-RED read and change the greeting.</p>
+    <div class="cols mqtt-more">
+    <div class="group">
+      <div class="sec">Broker</div>
+      <div class="frow">
+        <div class="field"><label for="broker_address">Address</label>
+          <input type="text" name="mqtt.broker_address" id="broker_address" maxlength="100" placeholder="host or host:port" spellcheck="false" autocapitalize="off">
+        </div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="mqtt_user">Username</label>
+          <input type="text" name="mqtt.user" id="mqtt_user" maxlength="64" autocomplete="off" spellcheck="false" autocapitalize="off">
+        </div>
+        <div class="field"><label for="mqtt_password">Password</label>
+          <input type="password" name="mqtt.password" id="mqtt_password" maxlength="64" placeholder="leave blank to keep" autocomplete="new-password">
+        </div>
+      </div>
+      <p class="note" data-password-set="mqtt.password" hidden>A password is set.
+        <button type="button" class="reset" data-clear-password="mqtt.password">Remove the password</button></p>
+    </div>
+    <div class="group">
+      <div class="sec">Topics</div>
+      <div class="frow">
+        <div class="field"><label for="topic_base">Topic Base</label>
+          <input type="text" required name="mqtt.topic_base" id="topic_base" maxlength="100" placeholder="/home/device/{name}" aria-describedby="topic_help topic_preview" spellcheck="false" autocapitalize="off">
+        </div>
+      </div>
+      <p class="note" id="topic_help">{name} becomes the device name. Topics no longer used are cleared from the broker after the restart.</p>
+      <div class="note topics" id="topic_preview"></div>
+    </div>
+    <div class="group">
+      <div class="sec">Home Assistant</div>
+      <label class="check"><input type="checkbox" name="mqtt.ha_discovery" id="ha_discovery"> Announce Hello to Home Assistant</label>
+      <div class="frow">
+        <div class="field"><label for="ha_prefix">Discovery Prefix</label>
+          <input type="text" required name="mqtt.ha_prefix" id="ha_prefix" maxlength="100" placeholder="homeassistant" aria-describedby="ha_help" spellcheck="false" autocapitalize="off">
+        </div>
+      </div>
+      <p class="note" id="ha_help">Home Assistant adds the greeting automatically (MQTT discovery), as a text box.
+        Turning this off removes it again. Only change the prefix if Home Assistant's has been changed.</p>
+    </div>
+    </div>
+    <button type="submit" class="btn-full save" disabled>Save</button>
+    <p class="msg" role="status" aria-live="polite"></p>
   </form>
 </div>
-<footer>Juggle OS example app</footer>
+
+<footer id="footer"></footer>
 </div>
+<script src="/base.js"></script>
 <script>
-const $ = id => document.getElementById(id);
-function duration(s) {
-  const d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
-  return d ? `${d} d ${h} h` : h ? `${h} h ${m} min` : `${m} min ${s % 60} s`;
-}
-async function refresh() {
-  try {
-    const r = await fetch('/api/info', {cache: 'no-store'});
-    if (!r.ok) throw new Error(r.status);
-    const i = await r.json();
-    $('name').textContent = i.device.name;
-    document.title = `${i.device.name} - Hello`;
-    $('state').textContent = 'Running'; $('state').className = 'badge on';
-    $('alert').hidden = true;
-    $('greeting').textContent = i.greeting;
-    $('s_up').textContent = duration(i.device.up_s);
-    $('s_temp').textContent = i.device.temperature_c == null ? 'unknown' : `${i.device.temperature_c} °C`;
-    $('s_mem').textContent = i.device.memory_free_mib == null ? 'unknown' : `${i.device.memory_free_mib} MiB`;
-    $('s_load').textContent = i.device.load.toFixed(2);
-    $('s_app').textContent = `${i.app.name} ${i.app.version}`;
-    $('s_app_up').textContent = duration(i.app.up_s);
-    $('s_os').textContent = i.os.version ? `${i.os.version}, build ${i.os.build} UTC` : 'not Juggle OS';
-    $('s_slot').textContent = i.os.slot || 'unknown';
-  } catch (e) {
-    $('state').textContent = 'Not answering'; $('state').className = 'badge';
-    $('alert').textContent = "The Pi isn't answering. It may be restarting; this page keeps trying.";
-    $('alert').hidden = false;
-  }
-}
-async function loadSettings() {
-  const r = await fetch('/api/config', {cache: 'no-store'});
-  if (r.ok) $('greet').value = (await r.json()).greeting;
-}
-$('settings').addEventListener('submit', async ev => {
-  ev.preventDefault();
-  const msg = $('save_msg');
-  $('save').disabled = true;
-  try {
-    const r = await fetch('/api/config', {method: 'POST', headers: {'Content-Type': 'application/json'},
-                                          body: JSON.stringify({greeting: $('greet').value})});
-    const body = await r.json();
-    if (!r.ok) throw new Error(body.error || r.status);
-    $('greet').value = body.greeting;
-    msg.textContent = 'Saved'; msg.className = 'msg good';
-    refresh();
-  } catch (e) {
-    msg.textContent = `Not saved: ${e.message}`; msg.className = 'msg';
-  } finally {
-    $('save').disabled = false;
-  }
+var el = Base.el;
+
+Base.onInfo(function (i) {
+  el('state').textContent = 'Running';
+  el('greeting').textContent = i.greeting;
+  el('device_name').value = i.name + '.local';
+  el('s_uptime').textContent = Base.duration(i.uptime_s);
+  el('s_temperature').textContent = i.temperature_c != null ? i.temperature_c + ' °C' : '—';
+  el('s_mem').textContent = i.mem_free != null ? Math.round(i.mem_free / 1048576) + ' MiB' : '—';
+  el('s_load').textContent = i.load != null ? i.load : '—';
+  el('s_time').textContent = i.time ? i.time.replace('T', ' ') + (i.time_zone ? ' (' + i.time_zone + ')' : '') : '—';
+  el('s_version').textContent = i.version;
+  el('s_app_uptime').textContent = Base.duration(i.app_uptime_s);
+  el('s_os').textContent = i.os && i.os.version ? i.os.version + (i.os.slot ? ', slot ' + i.os.slot : '') : 'Not on a Pi';
+  el('s_mqtt').textContent = !i.mqtt.enabled ? 'Off' : i.mqtt.connected ? 'Connected' : 'Not connected';
+  showTopics();
 });
-refresh();
-loadSettings();
-setInterval(refresh, 5000);
+
+// The topics under the topic base, as they'll be once saved
+function showTopics() {
+  var i = Base.info(), p = el('topic_preview'), base = el('topic_base').value.trim();
+  p.textContent = '';
+  if (!base || !i) return;
+  base = base.split('{name}').join(i.name);
+  [['State', '/state'], ['Commands', '/set'], ['Online status', '/status']].forEach(function (x) {
+    p.appendChild(Base.mk('div', { text: x[0] + ': ' }, [Base.mk('code', { text: base + x[1] })]));
+  });
+}
+el('topic_base').addEventListener('input', showTopics);
+
+Base.start();
 </script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 # Third-party notices
 
-This project includes the following libraries in `app/lib/`. Each is distributed under its own
+This project includes the following libraries in `app/base/`. Each is distributed under its own
 licence, reproduced below as that licence requires.
 
 ## Microdot
 
-`app/lib/microdot.py`, from [Microdot](https://github.com/miguelgrinberg/microdot) by Miguel Grinberg.
+`app/base/microdot.py` (part of App Base), from [Microdot](https://github.com/miguelgrinberg/microdot) by Miguel Grinberg.
 
 ```text
 MIT License
